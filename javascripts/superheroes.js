@@ -8,7 +8,7 @@ const buildDomString = (superheroArray) => {
     let domString = '';
     superheroArray.forEach((superhero)=>{
         domString += `<div>`;
-        domString += `<h1>"${superhero.name}"<h1>`;
+        domString += `<h1>${superhero.name}<h1>`;
         domString += `</div>`;
     })
     printToDom(domString, 'superhero-container');
