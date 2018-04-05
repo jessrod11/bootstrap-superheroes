@@ -32,3 +32,12 @@ h2 {
 .maleCharImage {
     border: 4px solid #518CCA;
 }
+
+.mainImage {
+    border: 2px solid white;
+    border-radius: 20%;
+}
+
+img {
+    margin-bottom: 15px;
+}
