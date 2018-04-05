@@ -1,5 +1,4 @@
 console.log('Jobs Stix');
-
 let selectedHero = '';
 
 const printToDom = (domString, divId) => {
@@ -63,7 +62,53 @@ const displaySuperhero = heroes => {
         }
     });
     printToDom(domString, "selected-hero");
+    getJobs(heroes);
 };
+
+const displayJobs = (heroArray) => {
+    let domString = '';
+    heroArray.forEach((hero)=> {
+        console.log('what is hero', hero);
+        if(hero.id === selectedHero){
+            hero.jobs.forEach((job)=>{
+                domString += `<div class="col-md-4">`;
+                domString += `<div class="well well-lg">${job}</div>`;
+                domString += `</div>`;
+            })
+        }
+    });
+    printToDom(domString, 'jobs');
+};
+
+
+const megaSmash = (jobsArray, heroesArray) => {
+    heroesArray.forEach((hero)=>{
+        hero.jobs = [];
+        hero.jobIds.forEach((jobId)=>{
+            jobsArray.forEach((job)=>{
+                if(job.id === jobId){
+                    hero.jobs.push(job.title);
+                }
+            })
+        })
+    })
+    return heroesArray;
+    //returns hereoes array with job ids and jobs inside.
+};
+
+const getJobs = (heroesArray) => {
+    let myJobsRequest = new XMLHttpRequest();
+    myJobsRequest.addEventListener('load', jobsJSONConvert);
+    myJobsRequest.addEventListener('error', executeThisIfCodeFails);
+    myJobsRequest.open('GET', '../db/jobs.json');
+    myJobsRequest.send();
+
+    function jobsJSONConvert () {
+        const jobsData = JSON.parse(this.responseText).jobs;
+        const completeHeroes = megaSmash(jobsData, heroesArray);
+        displayJobs(completeHeroes);
+    }
+}
 
 function loadFileforSingleHero(){
     const data = JSON.parse(this.responseText);
