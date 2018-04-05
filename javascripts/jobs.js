@@ -43,7 +43,7 @@ const displaySuperhero = heroes => {
     let domString = "";
     heroes.forEach(hero => {
         if (hero.id === selectedHero) {
-            domString += `<div class="row">`;
+            domString += `<div class="row super-hero">`;
             domString += `<div class="col-sm-4">`;
             if (hero.gender === "Female") {
                 domString += `<img class="charImage femaleCharImage" src="${
@@ -65,6 +65,9 @@ const displaySuperhero = heroes => {
     getJobs(heroes);
 };
 
+const refresh = () => {
+    startApplication();
+}
 
 const showResetBtn = () => {
     const reset = document.getElementById('reset-page').classList.remove('hide');
@@ -78,7 +81,7 @@ const resetPage = () => {
     const resetIt = document.getElementById('reset-page');
     resetIt.addEventListener('click', (e)=>{
         if(e.target.id === 'reset-page'){
-          addDropdown();  
+          addDropdown(); 
         }
     })
 }
@@ -88,7 +91,7 @@ const displayJobs = (heroArray) => {
     heroArray.forEach((hero)=> {
         if(hero.id === selectedHero){
             hero.jobs.forEach((job)=>{
-                domString += `<div class="col-md-4">`;
+                domString += `<div class="col-md-4 job-title">`;
                 domString += `<div class="well well-lg">${job}</div>`;
                 domString += `</div>`;
             })
