@@ -45,12 +45,12 @@ const displaySuperhero = heroes => {
         if (hero.id === selectedHero) {
             domString += `<div class="row">`;
             domString += `<div class="col-sm-4">`;
-            if (hero.gender === "Male") {
-                domString += `<img class="charImage maleImage" src="${
+            if (hero.gender === "Female") {
+                domString += `<img class="charImage femaleCharImage" src="${
                     hero.image
                     }">`;
             } else {
-                domString += `<img class="charImage femaleImage" src="${
+                domString += `<img class="charImage maleCharImage" src="${
                     hero.image
                     }">`;
             }
@@ -65,10 +65,27 @@ const displaySuperhero = heroes => {
     getJobs(heroes);
 };
 
+
+const showResetBtn = () => {
+    const reset = document.getElementById('reset-page').classList.remove('hide');
+}
+
+const addDropdown =() => {
+     const dropDown = document.getElementById('awesome-button').classList.remove('hide');
+}
+
+const resetPage = () => {
+    const resetIt = document.getElementById('reset-page');
+    resetIt.addEventListener('click', (e)=>{
+        if(e.target.id === 'reset-page'){
+          addDropdown();  
+        }
+    })
+}
+
 const displayJobs = (heroArray) => {
     let domString = '';
     heroArray.forEach((hero)=> {
-        console.log('what is hero', hero);
         if(hero.id === selectedHero){
             hero.jobs.forEach((job)=>{
                 domString += `<div class="col-md-4">`;
@@ -78,6 +95,8 @@ const displayJobs = (heroArray) => {
         }
     });
     printToDom(domString, 'jobs');
+    showResetBtn();
+    resetPage();
 };
 
 
