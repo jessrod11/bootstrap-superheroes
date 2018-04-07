@@ -80,9 +80,9 @@ const addDropdown =() => {
 const resetPage = () => {
     const resetIt = document.getElementById('reset-page');
     resetIt.addEventListener('click', (e)=>{
-        if(e.target.id === 'reset-page'){
-          addDropdown(); 
-        }
+        addDropdown(); 
+        document.getElementById('selected-hero').innerHTML = '';
+        document.getElementById('jobs').innerHTML = '';
     })
 }
 
