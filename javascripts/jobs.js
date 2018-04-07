@@ -83,6 +83,7 @@ const resetPage = () => {
         addDropdown(); 
         document.getElementById('selected-hero').innerHTML = '';
         document.getElementById('jobs').innerHTML = '';
+        document.getElementById('reset-page').classList.add('hide');
     })
 }
 
